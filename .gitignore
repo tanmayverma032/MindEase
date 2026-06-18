@@ -1,0 +1,77 @@
+# Built application files
+*.apk
+*.aar
+*.ap_
+*.aab
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+build/
+
+# Gradle files
+.gradle/
+app/build/
+
+# Gradle distribution (huge, wrapper downloads this automatically)
+gradle-8.5/
+gradle-8.5-bin.zip
+
+# Local configuration file (sdk path, API keys)
+local.properties
+gradle.properties
+
+# Signing keys
+*.jks
+*.keystore
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Node (puppeteer testing tool, not part of project)
+node_modules/
+package.json
+package-lock.json
+
+# Python virtual environments & cache
+**/venv/
+**/__pycache__/
+
+# Environment secrets (NEVER upload these)
+.env
+**/.env
+
+# Debug / build logs & scratch files
+extra/
+build_output.txt
+build_result.txt
+walkthrough.md.resolved
+technical_qa.html
+
+# API spec dumps (development artifacts)
+backend_openapi.json
+backend_paths.json
+backend_schemas.json
+blink_openapi.json
+blink_schemas.json
+chatbot_openapi.json
+chatbot_schemas.json
+
+# Backup models
+stress_api/backup_old_model/
+stress_api/medium_results.txt

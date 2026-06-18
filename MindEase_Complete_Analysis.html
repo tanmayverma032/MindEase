@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MindEase — Complete Project Analysis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #1a1a2e;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    background: #ffffff;
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0f3460;
+    border-bottom: 3px solid #e94560;
+    padding-bottom: 10px;
+    margin-bottom: 8px;
+    margin-top: 20px;
+  }
+
+  h2 {
+    font-size: 19px;
+    font-weight: 600;
+    color: #16213e;
+    border-bottom: 2px solid #0f3460;
+    padding-bottom: 6px;
+    margin-top: 35px;
+    margin-bottom: 12px;
+  }
+
+  h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #533483;
+    margin-top: 22px;
+    margin-bottom: 8px;
+  }
+
+  p {
+    margin: 8px 0;
+  }
+
+  strong {
+    color: #0f3460;
+  }
+
+  /* Tables */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 14px 0;
+    font-size: 11px;
+    page-break-inside: auto;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  th {
+    background: linear-gradient(135deg, #0f3460, #16213e);
+    color: #ffffff;
+    padding: 9px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.3px;
+  }
+
+  td {
+    border: 1px solid #e0e0e8;
+    padding: 7px 12px;
+    vertical-align: top;
+  }
+
+  tr:nth-child(even) {
+    background: #f7f8fc;
+  }
+
+  tr:hover {
+    background: #eef0f8;
+  }
+
+  /* Code */
+  code {
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    background: #f0f0f5;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    color: #e94560;
+  }
+
+  pre {
+    background: #1a1a2e;
+    color: #e8e8e8;
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-size: 11px;
+    overflow-x: auto;
+    margin: 12px 0;
+    border-left: 4px solid #e94560;
+    line-height: 1.5;
+  }
+
+  pre code {
+    background: none;
+    color: #e8e8e8;
+    padding: 0;
+    font-size: 11px;
+  }
+
+  /* Blockquotes */
+  blockquote {
+    border-left: 4px solid #e94560;
+    background: linear-gradient(135deg, #fff5f5, #fef0f0);
+    padding: 12px 18px;
+    margin: 14px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 11.5px;
+  }
+
+  blockquote strong {
+    color: #e94560;
+  }
+
+  /* Horizontal rules */
+  hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #ccc, transparent);
+    margin: 24px 0;
+  }
+
+  /* Lists */
+  ul, ol {
+    margin: 8px 0 8px 24px;
+  }
+
+  li {
+    margin: 4px 0;
+  }
+
+  /* Mermaid placeholder */
+  .mermaid-placeholder {
+    background: #f5f5ff;
+    border: 2px dashed #0f3460;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    color: #0f3460;
+    font-style: italic;
+    margin: 14px 0;
+  }
+
+  /* Print styles */
+  @media print {
+    body {
+      font-size: 11px;
+      padding: 0;
+      max-width: 100%;
+    }
+
+    h1 { font-size: 24px; }
+    h2 { font-size: 17px; page-break-after: avoid; }
+    h3 { font-size: 14px; page-break-after: avoid; }
+
+    table { font-size: 10px; page-break-inside: auto; }
+    th { padding: 6px 8px; }
+    td { padding: 5px 8px; }
+
+    pre {
+      font-size: 10px;
+      page-break-inside: avoid;
+      padding: 10px;
+    }
+
+    blockquote {
+      page-break-inside: avoid;
+    }
+
+    h2, h3 {
+      page-break-after: avoid;
+    }
+  }
+
+  /* Title page effect */
+  .title-section {
+    text-align: center;
+    padding: 20px 0 10px;
+  }
+</style>
+</head>
+<body>
+<h1 id="mindease-complete-project-analysis">MindEase — Complete Project Analysis</h1>
+<p><strong>Project:</strong> MindEase — AI-powered Stress Monitoring Android Application<br />
+<strong>Tech Stack:</strong> Kotlin (Jetpack Compose) + Python (FastAPI) + MongoDB + ML (Random Forest) + Gemini AI  </p>
+<hr />
+<h2 id="1-all-equations-used-in-the-project">1. All Equations Used in the Project</h2>
+<h3 id="equation-1-eye-aspect-ratio-ear-for-blink-detection">📐 Equation 1 — Eye Aspect Ratio (EAR) for Blink Detection</h3>
+<p><strong>File:</strong> <code>blink_api/app.py</code></p>
+<p>Used to detect eye blinks from video frames. MediaPipe extracts 6 landmark points per eye:</p>
+<pre class="code-block"><code>EAR = (A + B) / (2.0 × C)
+</code></pre>
+
+<p>Where:
+- <strong>A</strong> = <code>‖P₂ − P₆‖</code> (vertical distance between upper-left and lower-left eyelid)
+- <strong>B</strong> = <code>‖P₃ − P₅‖</code> (vertical distance between upper-right and lower-right eyelid)
+- <strong>C</strong> = <code>‖P₁ − P₄‖</code> (horizontal distance between eye corners)
+- <code>‖ ‖</code> = Euclidean norm: <code>√((x₂−x₁)² + (y₂−y₁)²)</code></p>
+<blockquote>
+<p><strong>⚠️ IMPORTANT:</strong><br />
+<strong>Threshold:</strong> EAR &lt; <strong>0.21</strong> → Eye is closed<br />
+<strong>Blink counted</strong> when EAR stays below threshold for ≥ <strong>2 consecutive frames</strong></p>
+</blockquote>
+<p>The average EAR of both eyes is used:</p>
+<pre class="code-block"><code>EAR_avg = (EAR_left + EAR_right) / 2.0
+</code></pre>
+
+<hr />
+<h3 id="equation-2-blink-rate-blinks-per-minute">📐 Equation 2 — Blink Rate (Blinks Per Minute)</h3>
+<p><strong>File:</strong> <code>CameraScanScreen.kt</code></p>
+<p>ML Kit detects blinks in a <strong>15-second window</strong>, then extrapolates to per-minute rate:</p>
+<pre class="code-block"><code>Blink_Rate_BPM = blink_count_in_15s × 4
+</code></pre>
+
+<blockquote>
+<p><strong>ℹ️ NOTE:</strong><br />
+Eye closed threshold: <code>eyeOpenProbability &lt; 0.2</code><br />
+Eye open threshold: <code>eyeOpenProbability &gt; 0.5</code></p>
+</blockquote>
+<hr />
+<h3 id="equation-3-accelerometer-magnitude-step-detection-motion">📐 Equation 3 — Accelerometer Magnitude (Step Detection &amp; Motion)</h3>
+<p><strong>File:</strong> <code>StepManager.kt</code> and <code>MotionSensorManager.kt</code></p>
+<pre class="code-block"><code>magnitude = √(x² + y² + z²)
+</code></pre>
+
+<p>Where <code>x, y, z</code> are the 3-axis accelerometer readings.</p>
+<p><strong>For step detection (StepManager):</strong></p>
+<pre class="code-block"><code>IF magnitude &gt; 11.5 AND lastMagnitude ≤ 11.5 AND (currentTime − lastStepTime) &gt; 300ms
+THEN step_count++
+</code></pre>
+
+<p><strong>For motion/stillness detection (MotionSensorManager):</strong></p>
+<pre class="code-block"><code>deviation = |magnitude − 9.81|
+
+IF deviation &gt; 0.5 → motion detected (not still)
+IF deviation ≤ 0.5 for ≥ 20 minutes → declared &quot;still&quot;
+</code></pre>
+
+<hr />
+<h3 id="equation-4-heart-rate-estimation-peak-detection-via-ppg">📐 Equation 4 — Heart Rate Estimation (Peak Detection via PPG)</h3>
+<p><strong>File:</strong> <code>CameraScanScreen.kt</code></p>
+<p>Uses <strong>photoplethysmography (PPG)</strong> — finger over rear camera with flashlight:</p>
+<pre class="code-block"><code>Step 1: avg_brightness = Σ(pixel_values) / num_pixels        (per frame)
+Step 2: smoothed = moving_average(signal, window=5)
+Step 3: mean = average(smoothed)
+Step 4: peaks = count(transitions from below_mean → above_mean)
+Step 5: duration_seconds = num_frames / 30.0                  (assuming 30 fps)
+Step 6: BPM = (peaks / duration_seconds) × 60
+</code></pre>
+
+<p><strong>Final HR</strong> uses <strong>median</strong> of last 15 readings for robustness:</p>
+<pre class="code-block"><code>sorted_readings = sort(heartRateBuffer)
+IF even count: median = (sorted[n/2 - 1] + sorted[n/2]) / 2
+IF odd count:  median = sorted[n/2]
+</code></pre>
+
+<hr />
+<h3 id="equation-5-sleep-confidence-score-weighted-multi-signal">📐 Equation 5 — Sleep Confidence Score (Weighted Multi-Signal)</h3>
+<p><strong>File:</strong> <code>SleepDetectionManager.kt</code></p>
+<pre class="code-block"><code>Confidence = W_screen + W_motion + W_window + W_no_unlock
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Weight</th>
+<th>Full Score Condition</th>
+<th>2/3 Score</th>
+<th>1/3 Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Screen Off</td>
+<td><strong>30</strong></td>
+<td>≥ 30 min off</td>
+<td>≥ 15 min</td>
+<td>≥ 10 min</td>
+</tr>
+<tr>
+<td>Motion Still</td>
+<td><strong>30</strong></td>
+<td>≥ 30 min still</td>
+<td>≥ 20 min</td>
+<td>≥ 10 min</td>
+</tr>
+<tr>
+<td>Sleep Window</td>
+<td><strong>25</strong></td>
+<td>Currently in predicted window</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>No Unlock</td>
+<td><strong>15</strong></td>
+<td>Last unlock &gt; 15 min ago</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Penalty:</strong> If not still but screen off and motion magnitude &gt; 1.0 → score −10</p>
+<pre class="code-block"><code>Final Confidence = clamp(score, 0, 100)
+</code></pre>
+
+<p><strong>State transitions:</strong>
+- AWAKE → POSSIBLY_SLEEPING: confidence ≥ <strong>40</strong> + screen off ≥ 15 min
+- POSSIBLY_SLEEPING → SLEEPING: confidence ≥ <strong>60</strong> + screen off ≥ 30 min + still</p>
+<hr />
+<h3 id="equation-6-circular-mean-for-sleep-window-prediction">📐 Equation 6 — Circular Mean for Sleep Window Prediction</h3>
+<p><strong>File:</strong> <code>SleepPatternRepository.kt</code></p>
+<p>Handles midnight wraparound (e.g., averaging 23:00 and 01:00):</p>
+<pre class="code-block"><code>For each hour h:
+    θ = h × 2π / 24
+
+sinSum = Σ sin(θᵢ) / n
+cosSum = Σ cos(θᵢ) / n
+
+mean_angle = atan2(sinSum, cosSum)
+IF mean_angle &lt; 0: mean_angle += 2π
+
+mean_hour = mean_angle × 24 / (2π)
+</code></pre>
+
+<hr />
+<h3 id="equation-7-sleep-duration-calculation">📐 Equation 7 — Sleep Duration Calculation</h3>
+<p><strong>File:</strong> <code>SleepDetectionManager.kt</code></p>
+<pre class="code-block"><code>duration_ms = wakeTime − sleepStartTime
+duration_hours = duration_ms / (1000 × 60 × 60)
+</code></pre>
+
+<p>Clamped to range <code>[0.0, 16.0]</code> hours. Only saved if ≥ 1.0 hour.</p>
+<hr />
+<h3 id="equation-8-estimated-steps-fallback">📐 Equation 8 — Estimated Steps (Fallback)</h3>
+<p><strong>File:</strong> <code>HealthConnectManager.kt</code></p>
+<pre class="code-block"><code>waking_hours = current_hour − 7       (for hours 7-22)
+estimated_steps = waking_hours × 350
+</code></pre>
+
+<hr />
+<h3 id="equation-9-estimated-sleep-from-time-last-resort-fallback">📐 Equation 9 — Estimated Sleep from Time (Last Resort Fallback)</h3>
+<p><strong>File:</strong> <code>HealthConnectManager.kt</code></p>
+<pre class="code-block"><code>IF hour in [5..11]:  estimated_sleep = clamp(hour − 23 + 24, 5.0, 8.0)
+IF hour in [12..23]: estimated_sleep = 7.0
+ELSE:                estimated_sleep = 4.0
+</code></pre>
+
+<hr />
+<h3 id="equation-10-ml-model-standardscaler-transform">📐 Equation 10 — ML Model: StandardScaler Transform</h3>
+<p><strong>File:</strong> <code>retrain_model.py</code></p>
+<pre class="code-block"><code>X_scaled = (X − μ) / σ
+</code></pre>
+
+<p>Where μ and σ are per-feature mean and standard deviation from training data.</p>
+<hr />
+<h3 id="equation-11-stress-level-from-score-dashboard-fallback">📐 Equation 11 — Stress Level from Score (Dashboard Fallback)</h3>
+<p><strong>File:</strong> <code>DashboardViewModel.kt</code></p>
+<pre class="code-block"><code>IF stress_score &lt; 40 → &quot;Low&quot;
+IF stress_score &lt; 70 → &quot;Mid&quot;  
+ELSE                 → &quot;High&quot;
+</code></pre>
+
+<hr />
+<h2 id="2-project-architecture">2. Project Architecture</h2>
+<pre class="code-block"><code class="language-mermaid">graph TB
+    subgraph &quot;Android App - Kotlin/Jetpack Compose&quot;
+        UI[&quot;UI Layer - Screens + ViewModels&quot;]
+        DATA[&quot;Data Layer - Sensors, Preferences, Repository&quot;]
+        NET[&quot;Network Layer - Retrofit, OkHttp, Gemini&quot;]
+    end
+
+    subgraph &quot;Backend Services - Python/FastAPI&quot;
+        BE[&quot;stress_backend - Auth, History, Routing&quot;]
+        SA[&quot;stress_api - ML Prediction&quot;]
+        BA[&quot;blink_api - Eye Blink Detection&quot;]
+        CA[&quot;stress_chatbot_api - AI Chatbot&quot;]
+    end
+
+    subgraph &quot;External Services&quot;
+        DB[(MongoDB Atlas)]
+        GEMINI[&quot;Google Gemini API&quot;]
+        GROQ[&quot;Groq LLM - Llama 3.3 70B&quot;]
+        RESEND[&quot;Resend Email API&quot;]
+    end
+
+    UI --&gt; DATA
+    UI --&gt; NET
+    NET --&gt; BE
+    BE --&gt; SA
+    BE --&gt; BA
+    BE --&gt; CA
+    BE --&gt; DB
+    CA --&gt; GROQ
+    NET --&gt; GEMINI
+    BE --&gt; RESEND
+</code></pre>
+
+<hr />
+<h2 id="3-data-flow-stress-prediction-pipeline">3. Data Flow — Stress Prediction Pipeline</h2>
+<pre class="code-block"><code class="language-mermaid">sequenceDiagram
+    participant User
+    participant App as Android App
+    participant Backend as stress_backend
+    participant ML as stress_api
+    participant Gemini as Gemini AI
+
+    User-&gt;&gt;App: Open Assessment
+    App-&gt;&gt;App: Auto-load sensor data (steps, sleep)
+    User-&gt;&gt;App: Camera scan - Blink rate
+    User-&gt;&gt;App: Camera scan - Heart rate
+    User-&gt;&gt;App: Enter manual data (age, ECG, etc.)
+    User-&gt;&gt;App: Submit Assessment
+    App-&gt;&gt;Backend: POST /predict_stress (JWT)
+    Backend-&gt;&gt;ML: POST /predict (12 features)
+    ML-&gt;&gt;ML: Encode - Scale - RandomForest
+    ML--&gt;&gt;Backend: prediction 0 or 1 or 2
+    Backend-&gt;&gt;Backend: Save to MongoDB history
+    Backend--&gt;&gt;App: stress_level, prediction_value
+    App-&gt;&gt;Gemini: Generate personalized tips
+    Gemini--&gt;&gt;App: 2-4 actionable tips
+    App--&gt;&gt;User: Show result + tips
+</code></pre>
+
+<hr />
+<h2 id="4-ml-model-features-12-input-features">4. ML Model Features (12 Input Features)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Feature Name</th>
+<th>Type</th>
+<th>Range / Values</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Eye_Blink_Rate_per_min</td>
+<td>Numeric</td>
+<td>10–30 blinks/min</td>
+<td>Camera (ML Kit / MediaPipe)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Resting_Heart_Rate_BPM</td>
+<td>Numeric</td>
+<td>45–180 BPM</td>
+<td>Camera (PPG via rear lens)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Heart_Rate_After_Exercise_BPM</td>
+<td>Numeric</td>
+<td>60–200 BPM</td>
+<td>Camera (PPG post-exercise)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>age</td>
+<td>Numeric</td>
+<td>18–80 years</td>
+<td>User input</td>
+</tr>
+<tr>
+<td>5</td>
+<td>gender</td>
+<td>Categorical</td>
+<td>Male, Female</td>
+<td>User input</td>
+</tr>
+<tr>
+<td>6</td>
+<td>worklife</td>
+<td>Categorical</td>
+<td>Student, Employee, etc.</td>
+<td>User input</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Sleep_Duration_Hours</td>
+<td>Numeric</td>
+<td>0–16 hours</td>
+<td>Auto-detected / manual</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Chest_Pain</td>
+<td>Categorical</td>
+<td>No, Mild, Yes</td>
+<td>User input</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Cholesterol_mg_dL</td>
+<td>Numeric</td>
+<td>100–350 mg/dL</td>
+<td>User input</td>
+</tr>
+<tr>
+<td>10</td>
+<td>ECG_Result</td>
+<td>Categorical</td>
+<td>Normal, Sinus_Tachycardia</td>
+<td>User input</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Body_Temperature_C</td>
+<td>Numeric</td>
+<td>35–40 °C</td>
+<td>User input</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Steps_per_Day</td>
+<td>Numeric</td>
+<td>0–30000 steps</td>
+<td>Auto-tracked / manual</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-ml-model-configuration">5. ML Model Configuration</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Algorithm</strong></td>
+<td>Random Forest Classifier</td>
+</tr>
+<tr>
+<td><strong>n_estimators</strong></td>
+<td>200</td>
+</tr>
+<tr>
+<td><strong>max_depth</strong></td>
+<td>15</td>
+</tr>
+<tr>
+<td><strong>min_samples_split</strong></td>
+<td>5</td>
+</tr>
+<tr>
+<td><strong>min_samples_leaf</strong></td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>class_weight</strong></td>
+<td>balanced</td>
+</tr>
+<tr>
+<td><strong>Test split</strong></td>
+<td>80/20 (stratified)</td>
+</tr>
+<tr>
+<td><strong>Scaler</strong></td>
+<td>StandardScaler</td>
+</tr>
+<tr>
+<td><strong>Encoder</strong></td>
+<td>LabelEncoder (for categoricals)</td>
+</tr>
+<tr>
+<td><strong>Target</strong></td>
+<td>Stress_Level (Low=0, Medium=1, High=2)</td>
+</tr>
+<tr>
+<td><strong>Dataset</strong></td>
+<td>2000 samples</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-stress-classification-output">6. Stress Classification Output</h2>
+<table>
+<thead>
+<tr>
+<th>Prediction Value</th>
+<th>Stress Level</th>
+<th>Color in App</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><strong>Low</strong></td>
+<td>Green</td>
+<td>Healthy stress levels</td>
+</tr>
+<tr>
+<td>1</td>
+<td><strong>Medium</strong></td>
+<td>Yellow/Orange</td>
+<td>Moderate stress, needs attention</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>High</strong></td>
+<td>Red</td>
+<td>High stress, action recommended</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-sleep-detection-state-machine">7. Sleep Detection State Machine</h2>
+<pre class="code-block"><code class="language-mermaid">stateDiagram-v2
+    [*] --&gt; AWAKE
+    AWAKE --&gt; POSSIBLY_SLEEPING : Screen off &gt;= 15min AND confidence &gt;= 40
+    POSSIBLY_SLEEPING --&gt; SLEEPING : Screen off &gt;= 30min AND still AND confidence &gt;= 60
+    POSSIBLY_SLEEPING --&gt; AWAKE : Screen on and not brief unlock
+    SLEEPING --&gt; AWAKE : Real unlock and calculates duration
+    SLEEPING --&gt; SLEEPING : Brief unlock ignored
+</code></pre>
+
+<hr />
+<h2 id="8-sleep-detection-thresholds">8. Sleep Detection Thresholds</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Evaluation Interval</td>
+<td>60 seconds</td>
+<td>Battery-efficient loop</td>
+</tr>
+<tr>
+<td>Screen Off Min</td>
+<td>15 minutes</td>
+<td>Trigger POSSIBLY_SLEEPING</td>
+</tr>
+<tr>
+<td>Screen Off Strong</td>
+<td>30 minutes</td>
+<td>Strong sleep signal</td>
+</tr>
+<tr>
+<td>Stillness Min</td>
+<td>20 minutes</td>
+<td>Motion-based confirmation</td>
+</tr>
+<tr>
+<td>Brief Unlock</td>
+<td>&lt; 2 minutes</td>
+<td>Ignored during sleep</td>
+</tr>
+<tr>
+<td>Valid Sleep Duration</td>
+<td>1.0 – 16.0 hours</td>
+<td>Sanity filter</td>
+</tr>
+<tr>
+<td>Motion Spike Threshold</td>
+<td>magnitude &gt; 1.0</td>
+<td>Wake detection</td>
+</tr>
+<tr>
+<td>Stillness Threshold</td>
+<td>deviation ≤ 0.5 from gravity</td>
+<td>Accelerometer stillness</td>
+</tr>
+<tr>
+<td>Rolling Window</td>
+<td>60 samples (~5 min)</td>
+<td>Motion averaging</td>
+</tr>
+<tr>
+<td>Sensor Batch Latency</td>
+<td>5 seconds</td>
+<td>Battery optimization</td>
+</tr>
+<tr>
+<td>Historical Sessions</td>
+<td>Last 14 days</td>
+<td>Pattern learning</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-api-endpoints">9. API Endpoints</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Service</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>/</td>
+<td>stress_backend</td>
+<td>No</td>
+<td>Health check</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/signup</td>
+<td>stress_backend</td>
+<td>No</td>
+<td>User registration with OTP</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/verify_email</td>
+<td>stress_backend</td>
+<td>No</td>
+<td>OTP verification</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/login</td>
+<td>stress_backend</td>
+<td>No</td>
+<td>Login → JWT token</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/predict_stress</td>
+<td>stress_backend</td>
+<td>JWT</td>
+<td>Submit assessment → stress prediction</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/history/{user_id}</td>
+<td>stress_backend</td>
+<td>JWT</td>
+<td>Fetch scan history</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/chat</td>
+<td>stress_backend</td>
+<td>No</td>
+<td>Chatbot proxy</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/change_password</td>
+<td>stress_backend</td>
+<td>JWT</td>
+<td>Change user password</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/predict</td>
+<td>stress_api</td>
+<td>No</td>
+<td>Raw ML prediction (internal)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/blink-count</td>
+<td>blink_api</td>
+<td>No</td>
+<td>Video → blink count (MediaPipe)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/chat</td>
+<td>stress_chatbot_api</td>
+<td>No</td>
+<td>LLM chatbot (Groq/Llama 3.3)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-authentication-flow">10. Authentication Flow</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Technology</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Password Hashing</td>
+<td>bcrypt</td>
+</tr>
+<tr>
+<td>Token Format</td>
+<td>JWT (HS256)</td>
+</tr>
+<tr>
+<td>Token Expiry</td>
+<td>30 days (43200 min)</td>
+</tr>
+<tr>
+<td>Email OTP</td>
+<td>6-digit random code</td>
+</tr>
+<tr>
+<td>Primary Email</td>
+<td>Resend API</td>
+</tr>
+<tr>
+<td>Fallback Email</td>
+<td>Gmail SMTP (SSL, port 465)</td>
+</tr>
+<tr>
+<td>Fallback (no email)</td>
+<td>Direct account creation</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-sensor-data-priority-hierarchy">11. Sensor Data Priority Hierarchy</h2>
+<h3 id="steps">Steps:</h3>
+<pre class="code-block"><code>1. Hardware Step Counter sensor (TYPE_STEP_COUNTER)
+2. Hardware Step Detector sensor (TYPE_STEP_DETECTOR)
+3. Accelerometer-based step detection (magnitude threshold)
+4. Background service daily count
+5. Health Connect API
+6. Time-based estimation (350 × waking_hours)
+</code></pre>
+
+<h3 id="sleep">Sleep:</h3>
+<pre class="code-block"><code>1. SleepDetectionManager (real-time multi-signal engine)
+2. SleepPatternRepository (last 24h cached session)
+3. Health Connect SleepSessionRecord
+4. UsageStats longest inactive gap
+5. Time-of-day estimation (5-8 hours)
+</code></pre>
+
+<hr />
+<h2 id="12-app-screens-navigation">12. App Screens &amp; Navigation</h2>
+<table>
+<thead>
+<tr>
+<th>Screen</th>
+<th>Purpose</th>
+<th>Key Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Welcome</td>
+<td>Onboarding</td>
+<td>Animated intro slides</td>
+</tr>
+<tr>
+<td>Login</td>
+<td>Authentication</td>
+<td>Email + password, JWT storage</td>
+</tr>
+<tr>
+<td>Signup</td>
+<td>Registration</td>
+<td>Name, email, password + OTP verification</td>
+</tr>
+<tr>
+<td>Verify Email</td>
+<td>OTP Entry</td>
+<td>6-digit code verification</td>
+</tr>
+<tr>
+<td>Dashboard</td>
+<td>Home screen</td>
+<td>Live steps, sleep, last stress level, streak</td>
+</tr>
+<tr>
+<td>Assessment</td>
+<td>Stress scan</td>
+<td>6-step wizard (info → blink → HR → sleep → steps → submit)</td>
+</tr>
+<tr>
+<td>Camera Scan</td>
+<td>Blink/HR</td>
+<td>ML Kit face detection + PPG heart rate</td>
+</tr>
+<tr>
+<td>History</td>
+<td>Past scans</td>
+<td>Timeline view with stress trends</td>
+</tr>
+<tr>
+<td>Profile</td>
+<td>User info</td>
+<td>Edit name, change password, logout</td>
+</tr>
+<tr>
+<td>Chatbot</td>
+<td>AI assistant</td>
+<td>Medical stress chatbot (Groq LLM)</td>
+</tr>
+<tr>
+<td>Doctors Map</td>
+<td>Find doctors</td>
+<td>Google Maps integration</td>
+</tr>
+<tr>
+<td>Wellness Tips</td>
+<td>Health tips</td>
+<td>General wellness advice</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="13-chatbot-safety-filters">13. Chatbot Safety Filters</h2>
+<table>
+<thead>
+<tr>
+<th>Filter</th>
+<th>Keywords</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Emergency</strong></td>
+<td>severe chest pain, can't breathe, fainting, suicidal, heart attack</td>
+<td>Immediate emergency response</td>
+</tr>
+<tr>
+<td><strong>Medical</strong></td>
+<td>stress, heart, chest, sleep, anxiety, ecg, cholesterol, etc.</td>
+<td>Allow — process with LLM</td>
+</tr>
+<tr>
+<td><strong>Off-topic</strong></td>
+<td>Anything else</td>
+<td>Block — restricted response</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>LLM Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model</td>
+<td>Llama 3.3 70B Versatile</td>
+</tr>
+<tr>
+<td>Provider</td>
+<td>Groq Cloud</td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>System Prompt</td>
+<td>Medical stress advisor with safety guardrails</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="14-external-deployment-urls">14. External Deployment URLs</h2>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Hosting</th>
+<th>URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stress_backend</td>
+<td>Render</td>
+<td>stress-backend-*.onrender.com</td>
+</tr>
+<tr>
+<td>stress_api</td>
+<td>Render</td>
+<td>stress-api-99xw.onrender.com</td>
+</tr>
+<tr>
+<td>blink_api</td>
+<td>Render</td>
+<td>blink-api-jxdv.onrender.com</td>
+</tr>
+<tr>
+<td>stress_chatbot_api</td>
+<td>Render</td>
+<td>stress-chatbot-api.onrender.com</td>
+</tr>
+<tr>
+<td>Database</td>
+<td>MongoDB Atlas</td>
+<td>Cloud cluster (stress_db)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="15-database-schema">15. Database Schema</h2>
+<p><strong>Database:</strong> stress_db (MongoDB)</p>
+<table>
+<thead>
+<tr>
+<th>Collection</th>
+<th>Fields</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>users</td>
+<td>_id, name, email, password (bcrypt hash)</td>
+<td>Registered users</td>
+</tr>
+<tr>
+<td>pending_users</td>
+<td>name, email, password, otp_code, created_at</td>
+<td>OTP verification queue</td>
+</tr>
+<tr>
+<td>history</td>
+<td>user_id, input (StressInput), prediction_value, stress_level, timestamp</td>
+<td>Scan results</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="16-file-structure-summary">16. File Structure Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Files</th>
+<th>Language</th>
+<th>Lines of Code (approx)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Android UI Screens</td>
+<td>13 files</td>
+<td>Kotlin</td>
+<td>~3,600</td>
+</tr>
+<tr>
+<td>Android Data Layer</td>
+<td>10 files</td>
+<td>Kotlin</td>
+<td>~1,500</td>
+</tr>
+<tr>
+<td>Android Network</td>
+<td>5 files</td>
+<td>Kotlin</td>
+<td>~700</td>
+</tr>
+<tr>
+<td>stress_backend</td>
+<td>3 files</td>
+<td>Python</td>
+<td>~420</td>
+</tr>
+<tr>
+<td>stress_api</td>
+<td>4 files</td>
+<td>Python</td>
+<td>~290</td>
+</tr>
+<tr>
+<td>blink_api</td>
+<td>1 file</td>
+<td>Python</td>
+<td>~83</td>
+</tr>
+<tr>
+<td>stress_chatbot_api</td>
+<td>1 file</td>
+<td>Python</td>
+<td>~92</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>~37 files</strong></td>
+<td><strong>Kotlin + Python</strong></td>
+<td><strong>~6,700</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="17-gemini-ai-integration">17. Gemini AI Integration</h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model</td>
+<td>gemini-2.0-flash</td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>0.7</td>
+</tr>
+<tr>
+<td>Max Output Tokens</td>
+<td>400</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>2–4 personalized health tips</td>
+</tr>
+<tr>
+<td>Fallback</td>
+<td>Rule-based tips from user data</td>
+</tr>
+<tr>
+<td>Trigger Conditions</td>
+<td>Sleep &lt; 6h, Steps &lt; 3000, HR &gt; 100, Chest pain, Cholesterol &gt; 200, Blink &gt; 20</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="18-complete-data-flow-graph">18. Complete Data Flow Graph</h2>
+<pre class="code-block"><code class="language-mermaid">graph LR
+    subgraph &quot;Sensor Inputs&quot;
+        CAM_F[&quot;Front Camera - Blink Detection&quot;]
+        CAM_R[&quot;Rear Camera + Flash - Heart Rate PPG&quot;]
+        ACCEL[&quot;Accelerometer - Steps + Motion&quot;]
+        SCREEN[&quot;Screen On/Off - Sleep Detection&quot;]
+        HC[&quot;Health Connect - Steps + Sleep&quot;]
+    end
+
+    subgraph &quot;Processing&quot;
+        MLKIT[&quot;ML Kit - Face Detection&quot;]
+        PPG[&quot;PPG Algorithm - Peak Detection&quot;]
+        STEP[&quot;Step Counter - Magnitude Threshold&quot;]
+        SLEEP[&quot;Sleep Engine - Confidence Scoring&quot;]
+        EAR_CALC[&quot;EAR Calculation - MediaPipe&quot;]
+    end
+
+    subgraph &quot;ML Pipeline&quot;
+        ENCODE[&quot;Label Encoding&quot;]
+        SCALE[&quot;Standard Scaling&quot;]
+        RF[&quot;Random Forest - 200 trees&quot;]
+    end
+
+    subgraph &quot;Outputs&quot;
+        STRESS[&quot;Stress Level - Low or Medium or High&quot;]
+        TIPS[&quot;Gemini AI Tips&quot;]
+        CHAT[&quot;Chatbot Response&quot;]
+        HIST[&quot;History Record&quot;]
+    end
+
+    CAM_F --&gt; MLKIT --&gt; ENCODE
+    CAM_F --&gt; EAR_CALC --&gt; ENCODE
+    CAM_R --&gt; PPG --&gt; ENCODE
+    ACCEL --&gt; STEP --&gt; ENCODE
+    ACCEL --&gt; SLEEP
+    SCREEN --&gt; SLEEP --&gt; ENCODE
+    HC --&gt; ENCODE
+    ENCODE --&gt; SCALE --&gt; RF --&gt; STRESS
+    STRESS --&gt; TIPS
+    STRESS --&gt; HIST
+</code></pre>
+
+<script>
+// Replace mermaid code blocks with styled placeholders for print
+document.querySelectorAll('pre code.language-mermaid, pre code').forEach(function(el) {
+  var text = el.textContent;
+  if (text.includes('graph ') || text.includes('sequenceDiagram') || text.includes('stateDiagram')) {
+    var container = el.closest('pre');
+    var div = document.createElement('div');
+    div.className = 'mermaid';
+    div.textContent = text;
+    container.parentNode.replaceChild(div, container);
+  }
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'default', securityLevel: 'loose' });
+</script>
+</body>
+</html>
